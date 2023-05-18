@@ -36,8 +36,8 @@ public class DAO_Login implements IDAO_Login{
                 System.out.println("Ketemu"); //Hapus
             }
             else{
-                data = null;
                 System.out.println("Tidak Ketemu"); //Hapus
+                data.setUsername("");
             }
         }catch(SQLException e){
             Logger.getLogger(Data_Login.class.getName()).log(Level.SEVERE, null, e);
