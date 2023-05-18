@@ -11,6 +11,7 @@ import project.SQL_Connection;
 public class DAO_Login implements IDAO_Login{
     Connection connection;
     final String query = "SELECT * FROM login WHERE username = ? AND password = ?;";
+    final String insert = "INSERT INTO login (id, username, password, status, id_user) VALUES (NULL, ?, ?, ?, ?)";
 
     public DAO_Login(){
         this.connection = SQL_Connection.connection();
@@ -33,6 +34,7 @@ public class DAO_Login implements IDAO_Login{
                 data.setUsername(rs.getString("username"));
                 data.setPassword(rs.getString("password"));
                 data.setStatus(rs.getString("status"));
+                data.setId_user(rs.getInt("id_user"));
                 System.out.println("Ketemu"); //Hapus
             }
             else{
@@ -43,6 +45,28 @@ public class DAO_Login implements IDAO_Login{
             Logger.getLogger(Data_Login.class.getName()).log(Level.SEVERE, null, e);
         }
         return data;
+    }
+
+    @Override
+    public void Insert(Data_Login data_Login) {
+        PreparedStatement st = null;
+
+        try {
+            st = connection.prepareStatement(insert);
+            st.setString(1, data_Login.getUsername());
+            st.setString(2, data_Login.getPassword());
+            st.setString(3, "user");
+            st.setInt(4, data_Login.getId_user());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                st.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }

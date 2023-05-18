@@ -10,7 +10,6 @@ public class C_Login {
     UI_Login ui_Login;
     DAO_Login dlogin;
 
-
     public C_Login(UI_Login ui){
         this.data = new Data_Login();
         this.ui_Login = ui;
@@ -19,7 +18,7 @@ public class C_Login {
 
     public void check(){
         data.setUsername(ui_Login.getI_username().getText());
-        data.setPassword(ui_Login.getI_password().getText());
+        data.setPassword(String.valueOf(ui_Login.getI_password().getPassword()));
 
         data = dlogin.getLoginData(data);
         if(data.getUsername().isEmpty()){

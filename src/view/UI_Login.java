@@ -8,6 +8,7 @@ package view;
 import controller.C_Login;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
@@ -38,9 +39,11 @@ C_Login login;
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         I_username = new javax.swing.JTextField();
-        I_password = new javax.swing.JTextField();
         B_login = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        B_Guest = new javax.swing.JButton();
+        I_password = new javax.swing.JPasswordField();
+        B_Register = new javax.swing.JButton();
+        C_ShowPass = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,7 +68,27 @@ C_Login login;
             }
         });
 
-        jButton4.setText("Cancel");
+        B_Guest.setText("Guest");
+        B_Guest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_GuestActionPerformed(evt);
+            }
+        });
+
+        I_password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                I_passwordActionPerformed(evt);
+            }
+        });
+
+        B_Register.setText("Register");
+
+        C_ShowPass.setText("Show Password");
+        C_ShowPass.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                C_ShowPassStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,10 +100,12 @@ C_Login login;
                         .addGap(148, 148, 148)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(B_login, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(51, 51, 51)
+                        .addComponent(B_login, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(B_Register, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(B_Guest, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(96, 96, 96)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -89,8 +114,9 @@ C_Login login;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(I_username, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                            .addComponent(I_password))))
-                .addContainerGap(77, Short.MAX_VALUE))
+                            .addComponent(I_password)
+                            .addComponent(C_ShowPass))))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,11 +131,14 @@ C_Login login;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(I_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(B_login)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addComponent(C_ShowPass)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(B_login)
+                    .addComponent(B_Guest)
+                    .addComponent(B_Register))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         pack();
@@ -124,7 +153,7 @@ C_Login login;
             JOptionPane.showMessageDialog(null,"Username Jangan Lupa Di isi ya!!");
             I_username.requestFocus(); 
         }
-        else if(I_password.getText().equals("")){
+        else if(I_password.getPassword().equals("")){
             JOptionPane.showMessageDialog(null,"Password Jangan Lupa Diisi ya!!");
             I_password.requestFocus();
         }
@@ -132,6 +161,24 @@ C_Login login;
             login.check();
         }
     }//GEN-LAST:event_B_loginActionPerformed
+
+    private void I_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_I_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_I_passwordActionPerformed
+
+    private void B_GuestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_GuestActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B_GuestActionPerformed
+
+    private void C_ShowPassStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_C_ShowPassStateChanged
+        // TODO add your handling code here:
+        if(C_ShowPass.isSelected()){
+            I_password.setEchoChar((char)0);
+        }
+        else{
+            I_password.setEchoChar('*');
+        }
+    }//GEN-LAST:event_C_ShowPassStateChanged
  
     /**
      * @param args the command line arguments
@@ -177,11 +224,11 @@ C_Login login;
         this.B_login = B_login;
     }
 
-    public JTextField getI_password() {
+    public JPasswordField getI_password() {
         return I_password;
     }
 
-    public void setI_password(JTextField I_password) {
+    public void setI_password(JPasswordField I_password) {
         this.I_password = I_password;
     }
 
@@ -194,10 +241,12 @@ C_Login login;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton B_Guest;
+    private javax.swing.JButton B_Register;
     private javax.swing.JButton B_login;
-    private javax.swing.JTextField I_password;
+    private javax.swing.JCheckBox C_ShowPass;
+    private javax.swing.JPasswordField I_password;
     private javax.swing.JTextField I_username;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
