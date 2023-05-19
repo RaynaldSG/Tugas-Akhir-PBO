@@ -82,6 +82,11 @@ C_Login login;
         });
 
         B_Register.setText("Register");
+        B_Register.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_RegisterActionPerformed(evt);
+            }
+        });
 
         C_ShowPass.setText("Show Password");
         C_ShowPass.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -145,7 +150,7 @@ C_Login login;
     }// </editor-fold>//GEN-END:initComponents
 
     private void I_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_I_usernameActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_I_usernameActionPerformed
 
     private void B_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_loginActionPerformed
@@ -163,7 +168,7 @@ C_Login login;
     }//GEN-LAST:event_B_loginActionPerformed
 
     private void I_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_I_passwordActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_I_passwordActionPerformed
 
     private void B_GuestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_GuestActionPerformed
@@ -171,7 +176,6 @@ C_Login login;
     }//GEN-LAST:event_B_GuestActionPerformed
 
     private void C_ShowPassStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_C_ShowPassStateChanged
-        // TODO add your handling code here:
         if(C_ShowPass.isSelected()){
             I_password.setEchoChar((char)0);
         }
@@ -179,6 +183,12 @@ C_Login login;
             I_password.setEchoChar('*');
         }
     }//GEN-LAST:event_C_ShowPassStateChanged
+
+    private void B_RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_RegisterActionPerformed
+        UI_Register ui = new UI_Register();
+        ui.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_B_RegisterActionPerformed
  
     /**
      * @param args the command line arguments

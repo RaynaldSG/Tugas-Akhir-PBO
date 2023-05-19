@@ -13,6 +13,7 @@ public class C_Register {
     DAO_User dUser;
     DAO_Login dLogin;
     UI_Register ui;
+    Integer id_user;
 
     public C_Register(UI_Register ui){
         this.data_User = new Data_User();
@@ -23,58 +24,63 @@ public class C_Register {
     }
 
     public void inputUser(){
-        Integer id_user;
-
-        if(ui.getI_username().getText().isEmpty()){
-            ui.getI_username().requestFocus();
-            H_Error.empty_username();
-            return;
-        }
-        else if(ui.getI_password().getPassword().length == 0){
-            ui.getI_password().requestFocus();
-            H_Error.empty_password();
-            return;
-        }
-        else if(ui.getI_Nama().getText().isEmpty()){
-            ui.getI_Nama().requestFocus();
-            H_Error.empty_nama();
-            return;
-        }
-        else if(ui.getI_Alamat().getText().isEmpty()){
-            ui.getI_Alamat().requestFocus();
-            H_Error.empty_alamat();
-            return;
-            }
-        else if(ui.getI_Telepon().getText().isEmpty()){
-            ui.getI_Telepon().requestFocus();
-            H_Error.empty_telepon();
-            return;
-        }
-        else{
-            try{
-                int tes;
-                tes = Integer.parseInt(ui.getI_Telepon().getText());
-            }catch(Exception e){
-                H_Error.wrong_telepon();
-                return;
-            }
-        }
-
+        this.id_user = -1;
 
         data_User.setNama(ui.getI_Nama().getText());
         data_User.setAlamat(ui.getI_Alamat().getText());
         data_User.setTelepon(ui.getI_Telepon().getText());
         
-        id_user = dUser.Insert(data_User);
+        this.id_user = dUser.Insert(data_User);
 
         data_Login.setUsername(ui.getI_username().getText());
         data_Login.setPassword(String.valueOf(ui.getI_password().getPassword()));
         data_Login.setId_user(id_user);
 
         dLogin.Insert(data_Login);
+       
+    }
 
-        if(id_user != null){
-            System.out.println("Insert berhasil"); // hapus
+    public boolean Check_Data(){
+        boolean check;
+
+        if(id_user == -1){
+            check = false;
+        }
+        else{
+            check = true;
+        }
+
+        return check;
+    }
+
+    public boolean Null_Checker(){
+        if(ui.getI_username().getText().isEmpty()){
+            ui.getI_username().requestFocus();
+            H_Error.empty_username();
+            return true;
+        }
+        else if(ui.getI_password().getPassword().length == 0){
+            ui.getI_password().requestFocus();
+            H_Error.empty_password();
+            return true;
+        }
+        else if(ui.getI_Nama().getText().isEmpty()){
+            ui.getI_Nama().requestFocus();
+            H_Error.empty_nama();
+            return true;
+        }
+        else if(ui.getI_Alamat().getText().isEmpty()){
+            ui.getI_Alamat().requestFocus();
+            H_Error.empty_alamat();
+            return true;
+            }
+        else if(ui.getI_Telepon().getText().isEmpty()){
+            ui.getI_Telepon().requestFocus();
+            H_Error.empty_telepon();
+            return true;
+        }
+        else{
+            return false;
         }
     }
 }

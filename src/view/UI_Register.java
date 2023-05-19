@@ -6,14 +6,13 @@ package view;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import DAO.DAO.DAO_Login;
-import DAO.DAO.DAO_User;
 import controller.C_Register;
-import model.Data_Login;
-import model.Data_User;
+import errorhandler.H_Error;
+
 
 /**
  *
@@ -117,6 +116,14 @@ public class UI_Register extends javax.swing.JFrame {
         I_Telepon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 I_TeleponActionPerformed(evt);
+            }
+        });
+        I_Telepon.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                I_TeleponKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                I_TeleponKeyTyped(evt);
             }
         });
 
@@ -238,8 +245,34 @@ public class UI_Register extends javax.swing.JFrame {
 
     private void B_ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ConfirmActionPerformed
         // TODO add your handling code here:
-        cRegister.inputUser();
+        if(!cRegister.Null_Checker()){
+            cRegister.inputUser();
+            if(cRegister.Check_Data()){
+                JOptionPane.showMessageDialog(null, "Registrasi Berhasil", "Registration Success", JOptionPane.INFORMATION_MESSAGE);
+                UI_Login ui = new UI_Login();
+                ui.setVisible(true);
+                this.dispose();
+            }
+            else{
+                H_Error.failure_registration();
+            }
+        }
     }//GEN-LAST:event_B_ConfirmActionPerformed
+
+    private void I_TeleponKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_I_TeleponKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9') {
+               I_Telepon.setEditable(true);
+            } 
+        else {
+               I_Telepon.setEditable(false);
+               H_Error.wrong_telepon();
+            }
+    }//GEN-LAST:event_I_TeleponKeyPressed
+
+    private void I_TeleponKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_I_TeleponKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_I_TeleponKeyTyped
 
     /**
      * @param args the command line arguments
