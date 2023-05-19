@@ -32,4 +32,31 @@ public class C_Katalog {
         ui.getL_IMG().setIcon(imageIcon);
         System.out.println(daka.get(min).getImg());
     }
+
+    public void NextData(){
+        this.curr++;
+
+        if(curr >= max){
+            this.curr = max-1;
+        }
+        ShowData(curr);
+    }
+
+    public void PrevData(){
+        this.curr--;
+
+        if(curr < min){
+            this.curr = min;
+        }
+        ShowData(curr);
+    }
+
+    public void ShowData(int curr){
+        ui.getL_Model().setText(daka.get(curr).getModel());
+        ui.getL_Merk().setText(daka.get(curr).getMerk());
+        ui.getL_Price().setText("Rp. " + String.valueOf(daka.get(curr).getPrice()) + " /hari");
+        imageIcon = new ImageIcon(getClass().getResource(daka.get(curr).getImg()));
+        ui.getL_IMG().setIcon(imageIcon);
+        System.out.println(daka.get(curr).getImg());
+    }
 }

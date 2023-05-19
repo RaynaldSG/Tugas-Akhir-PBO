@@ -2,6 +2,7 @@ package project;
 
 import DAO.DAO.DAO_Login;
 import model.Data_Login;
+import view.UI_Login;
 
 public class main {
     public static void main(String[] args) {
@@ -17,5 +18,8 @@ public class main {
         if(datan == null){
             System.out.println("Null woi");
         }
+
+        UI_Login ui = new UI_Login();
+        ui.setVisible(true);
     }
 }

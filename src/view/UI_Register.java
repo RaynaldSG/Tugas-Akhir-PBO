@@ -263,11 +263,11 @@ public class UI_Register extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9') {
                I_Telepon.setEditable(true);
-            } 
+        } 
         else {
                I_Telepon.setEditable(false);
                H_Error.wrong_telepon();
-            }
+        }
     }//GEN-LAST:event_I_TeleponKeyPressed
 
     private void I_TeleponKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_I_TeleponKeyTyped

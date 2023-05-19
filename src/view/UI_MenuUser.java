@@ -11,13 +11,14 @@ import model.Data_User;
  * @author Raynald Krisnawan
  */
 public class UI_MenuUser extends javax.swing.JFrame {
-
+    Data_User data_User;
     /**
      * Creates new form UI_MenuUser
      */
     public UI_MenuUser(Data_User data_User) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.data_User = data_User;
         this.i_Nama.setText(data_User.getNama());
     }
 
@@ -53,6 +54,11 @@ public class UI_MenuUser extends javax.swing.JFrame {
         });
 
         jButton2.setText("Sewa Kamera");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Log Out");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -109,9 +115,16 @@ public class UI_MenuUser extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        UI_Katalog new_ui = new UI_Katalog();
+        UI_Katalog new_ui = new UI_Katalog(data_User);
         new_ui.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        UI_Sewa new_ui = new UI_Sewa();
+        new_ui.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

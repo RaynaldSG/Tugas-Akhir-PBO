@@ -7,6 +7,7 @@ package view;
 import javax.swing.JLabel;
 
 import controller.C_Katalog;
+import model.Data_User;
 
 /**
  *
@@ -14,13 +15,15 @@ import controller.C_Katalog;
  */
 public class UI_Katalog extends javax.swing.JFrame {
     C_Katalog cKatalog;
+    Data_User data_User;
     /**
      * Creates new form UI_Katalog
      */
-    public UI_Katalog() {
+    public UI_Katalog(Data_User data_User) {
         initComponents();
         cKatalog = new C_Katalog(this);
         this.setLocationRelativeTo(null);
+        this.data_User = data_User;
         cKatalog.awal();
     }
 
@@ -43,6 +46,7 @@ public class UI_Katalog extends javax.swing.JFrame {
         l_Model = new javax.swing.JLabel();
         l_Price = new javax.swing.JLabel();
         l_Merk = new javax.swing.JLabel();
+        b_back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,6 +58,11 @@ public class UI_Katalog extends javax.swing.JFrame {
         l_IMG.setPreferredSize(new java.awt.Dimension(400, 300));
 
         b_Next.setText("NEXT");
+        b_Next.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_NextActionPerformed(evt);
+            }
+        });
 
         b_Prev.setText("PREV");
         b_Prev.addActionListener(new java.awt.event.ActionListener() {
@@ -68,16 +77,25 @@ public class UI_Katalog extends javax.swing.JFrame {
 
         jLabel5.setText("Price");
 
+        b_back.setText("BACK");
+        b_back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_backActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(b_back)
+                    .addComponent(b_Prev))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(b_Prev)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(l_IMG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -106,14 +124,14 @@ public class UI_Katalog extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(l_IMG, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(136, 136, 136)
                         .addComponent(b_Next))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(137, 137, 137)
-                        .addComponent(b_Prev)))
+                        .addComponent(b_Prev))
+                    .addComponent(l_IMG, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -125,7 +143,8 @@ public class UI_Katalog extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(l_Price, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(l_Price, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(b_back))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -134,7 +153,20 @@ public class UI_Katalog extends javax.swing.JFrame {
 
     private void b_PrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_PrevActionPerformed
         // TODO add your handling code here:
+        cKatalog.PrevData();
     }//GEN-LAST:event_b_PrevActionPerformed
+
+    private void b_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_backActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        UI_MenuUser new_ui = new UI_MenuUser(data_User);
+        new_ui.setVisible(true);
+    }//GEN-LAST:event_b_backActionPerformed
+
+    private void b_NextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_NextActionPerformed
+        // TODO add your handling code here:
+        cKatalog.NextData();
+    }//GEN-LAST:event_b_NextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,7 +198,7 @@ public class UI_Katalog extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UI_Katalog().setVisible(true);
+//                new UI_Katalog().setVisible(true);
             }
         });
     }
@@ -208,6 +240,7 @@ public class UI_Katalog extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton b_Next;
     private javax.swing.JButton b_Prev;
+    private javax.swing.JButton b_back;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
