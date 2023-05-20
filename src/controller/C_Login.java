@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import model.Data_Login;
 import model.Data_User;
 import view.UI_Login;
+import view.UI_MenuAdmin;
 import view.UI_MenuUser;
 
 public class C_Login {
@@ -41,8 +42,9 @@ public class C_Login {
                 new_ui.setVisible(true);
             }
             else{
-                JOptionPane.showMessageDialog(null, "Anda Admin", "ADMIN", JOptionPane.INFORMATION_MESSAGE);
-
+                ui_Login.dispose();
+                UI_MenuAdmin new_ui = new UI_MenuAdmin();
+                new_ui.setVisible(true);
             } 
         }
     }

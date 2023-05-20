@@ -14,4 +14,7 @@ import model.Data_Kamera;
 public interface IDAO_Kamera {
     public List<Data_Kamera> getAll();
     public Data_Kamera getById(int id);
+    public void InsertData(Data_Kamera data_Kamera);
+    public void UpdateData(Data_Kamera data_Kamera);
+    public void DeleteData(int data);
 }

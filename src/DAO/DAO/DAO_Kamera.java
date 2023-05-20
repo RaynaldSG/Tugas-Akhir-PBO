@@ -5,6 +5,7 @@
 package DAO.DAO;
 
 import DAO.DAO_Implement.IDAO_Kamera;
+import errorhandler.H_Error;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,6 +24,9 @@ public class DAO_Kamera implements IDAO_Kamera{
     Connection connection;
     final String getAll_query = "SELECT * FROM kamera";
     final String getById_query = "SELECT * FROM kamera WHERE id = ?";
+    final String Insert_query = "INSERT INTO kamera (id, model, merk, price, img) VALUES (NULL, ?, ?, ?, ?)";
+    final String Update_query = "UPDATE kamera SET model = ?, merk = ?, price = ?, img = ? WHERE id = ?";
+    final String Delete_query = "DELETE FROM kamera WHERE id = ?";
 
     public DAO_Kamera(){
         connection = SQL_Connection.connection();
@@ -53,6 +57,69 @@ public class DAO_Kamera implements IDAO_Kamera{
     @Override
     public Data_Kamera getById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void InsertData(Data_Kamera data_Kamera) {
+        PreparedStatement st = null;
+        try {
+            st = connection.prepareStatement(Insert_query);
+            st.setString(1, data_Kamera.getModel());
+            st.setString(2, data_Kamera.getMerk());
+            st.setInt(3, data_Kamera.getPrice());
+            st.setString(4, data_Kamera.getImg());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                st.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void UpdateData(Data_Kamera data_Kamera) {
+        PreparedStatement st = null;
+        try {
+            st = connection.prepareStatement(Update_query);
+            st.setString(1, data_Kamera.getModel());
+            st.setString(2, data_Kamera.getMerk());
+            st.setInt(3, data_Kamera.getPrice());
+            st.setString(4, data_Kamera.getImg());
+            st.setInt(5, data_Kamera.getId());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            H_Error.data_notfound();
+        } finally{
+            try {
+                st.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+    }
+
+    @Override
+    public void DeleteData(int data) {
+        PreparedStatement st = null;
+        try {
+            st = connection.prepareStatement(Delete_query);
+            st.setInt(1, data);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally{
+            try {
+                st.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
     
 }

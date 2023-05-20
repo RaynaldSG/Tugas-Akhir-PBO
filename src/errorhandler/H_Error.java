@@ -50,5 +50,7 @@ public class H_Error {
     public static void minus_field(){
         JOptionPane.showMessageDialog(null, "Tolong Masukkan Angka Lebih Dari 0", "Zero Field", JOptionPane.INFORMATION_MESSAGE);
     }
-    
+    public static void data_notfound(){
+        JOptionPane.showMessageDialog(null, "Data Tidak Ditemukan", "Data", JOptionPane.WARNING_MESSAGE);
+    }
 }
