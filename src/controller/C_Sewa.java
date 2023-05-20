@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import DAO.DAO.DAO_Kamera;
 import errorhandler.H_Error;
 import model.Data_Kamera;
@@ -51,7 +52,7 @@ public class C_Sewa {
             ui.getI_Jumlah().requestFocus();
             return;
         }
-        else if(Integer.parseInt(ui.getI_Jumlah().getText()) <= 0){
+        else if(Integer.parseInt(ui.getI_Jumlah().getText()) < 0){
             H_Error.minus_field();
             ui.getI_Jumlah().requestFocus();
             return;
@@ -72,8 +73,14 @@ public class C_Sewa {
                 data_Keranjangs.add(dk);
             }
             else{
-                data_Keranjangs.get(check).setJumlah(dk.getJumlah());
-                data_Keranjangs.get(check).setTotal(dk.getTotal());
+                if(dk.getJumlah().equals(0)){
+                    HapusDataKeranjang(dk.getModel());
+                    System.out.println("Masuk Sistem Hapus");
+                }
+                else{
+                    data_Keranjangs.get(check).setJumlah(dk.getJumlah());
+                    data_Keranjangs.get(check).setTotal(dk.getTotal());
+                }
             }
         }
         else{
@@ -87,12 +94,15 @@ public class C_Sewa {
 
         T_Keranjang tKeranjang = new T_Keranjang(data_Keranjangs);
         ui.getT_Keranjang().setModel(tKeranjang);
-
         
-        for(int i = 0; i < data_Keranjangs.size(); i++){
-            total = total + data_Keranjangs.get(i).getTotal();
+        if(!data_Keranjangs.isEmpty()){
+            System.out.println("Masuk Data Keranjang not empty");
+            for(int i = 0; i < data_Keranjangs.size(); i++){
+                total = total + data_Keranjangs.get(i).getTotal();
+            }
+            ui.getL_Total().setText(String.valueOf(total));
         }
-        ui.getL_Total().setText(String.valueOf(total));
+        return;
     }
 
 
@@ -105,7 +115,7 @@ public class C_Sewa {
         else{
             for(int i = 0; i < data_Keranjangs.size(); i++){
                 data_Keranjangs.get(i).setHari(hari);
-                data_Keranjangs.get(i).setTotal(dk.getPrice()*dk.getHari()*dk.getJumlah());
+                data_Keranjangs.get(i).setTotal(data_Keranjangs.get(i).getPrice()*data_Keranjangs.get(i).getHari()*data_Keranjangs.get(i).getJumlah());
             }
             TabelKeranjang();
         }
@@ -132,5 +142,18 @@ public class C_Sewa {
             check = false;
         }
         return check;
+    }
+
+    public List<Data_Keranjang> getData_Keranjangs(){
+        return this.data_Keranjangs;
+    }
+
+    public void HapusDataKeranjang(String model){
+        for(int i = 0; i < data_Keranjangs.size(); i++){
+            if(data_Keranjangs.get(i).getModel().equals(model)){
+                data_Keranjangs.remove(i);
+                System.out.println("Hapus Sukses"); //Hapus
+            }
+        }
     }
 }

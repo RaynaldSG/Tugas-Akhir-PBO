@@ -122,7 +122,7 @@ public class UI_MenuUser extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        UI_Sewa new_ui = new UI_Sewa();
+        UI_Sewa new_ui = new UI_Sewa(data_User);
         new_ui.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
