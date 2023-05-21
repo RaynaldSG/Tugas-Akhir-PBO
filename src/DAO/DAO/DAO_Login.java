@@ -12,6 +12,7 @@ public class DAO_Login implements IDAO_Login{
     Connection connection;
     final String query = "SELECT * FROM login WHERE username = ? AND password = ?;";
     final String insert = "INSERT INTO login (id, username, password, status, id_user) VALUES (NULL, ?, ?, ?, ?)";
+    final String getUnameQuery = "SELECT username FROM login WHERE username = ?";
 
     public DAO_Login(){
         this.connection = SQL_Connection.connection();
@@ -45,6 +46,24 @@ public class DAO_Login implements IDAO_Login{
             Logger.getLogger(Data_Login.class.getName()).log(Level.SEVERE, null, e);
         }
         return data;
+    }
+    
+    @Override
+    public boolean getUsername(String username) {
+        boolean check = false;
+        PreparedStatement st = null;
+        ResultSet rs;
+        try {
+            st = connection.prepareStatement(getUnameQuery);
+            st.setString(1, username);
+            rs = st.executeQuery();
+            if(rs.next()){
+                check = true;
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(Data_Login.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return check;
     }
 
     @Override

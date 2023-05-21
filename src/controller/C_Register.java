@@ -29,10 +29,15 @@ public class C_Register {
         data_User.setNama(ui.getI_Nama().getText());
         data_User.setAlamat(ui.getI_Alamat().getText());
         data_User.setTelepon(ui.getI_Telepon().getText());
+        data_Login.setUsername(ui.getI_username().getText());
+
+        if(dLogin.getUsername(data_Login.getUsername())){
+            H_Error.sama_uname();
+            return;
+        }
         
         this.id_user = dUser.Insert(data_User);
 
-        data_Login.setUsername(ui.getI_username().getText());
         data_Login.setPassword(String.valueOf(ui.getI_password().getPassword()));
         data_Login.setId_user(id_user);
 

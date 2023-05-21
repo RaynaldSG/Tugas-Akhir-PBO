@@ -53,4 +53,7 @@ public class H_Error {
     public static void data_notfound(){
         JOptionPane.showMessageDialog(null, "Data Tidak Ditemukan", "Data", JOptionPane.WARNING_MESSAGE);
     }
+    public static void sama_uname(){
+        JOptionPane.showMessageDialog(null, "Username telah terpakai", "Invalid Username", JOptionPane.INFORMATION_MESSAGE);
+    }
 }
