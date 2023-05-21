@@ -194,4 +194,13 @@ public class C_DataManajemen {
         ui.getB_Edit().setEnabled(false);
         ui.getB_Delete().setEnabled(false);
     }
+
+    public void resetButton(){
+        ui.getI_Model().setText(null);
+        ui.getI_Merk().setText(null);
+        ui.getI_Price().setText(null);
+        ui.getL_FileName().setText(null);
+        ui.getB_Edit().setEnabled(true);
+        ui.getB_Delete().setEnabled(true);
+    }
 }

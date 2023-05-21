@@ -4,6 +4,8 @@
  */
 package view;
 
+import java.awt.event.KeyEvent;
+
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
@@ -261,7 +263,7 @@ public class UI_Register extends javax.swing.JFrame {
 
     private void I_TeleponKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_I_TeleponKeyPressed
         // TODO add your handling code here:
-        if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9') {
+        if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9'  || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
                I_Telepon.setEditable(true);
         } 
         else {

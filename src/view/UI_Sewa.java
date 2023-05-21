@@ -8,6 +8,8 @@ import controller.C_Sewa;
 import errorhandler.H_Error;
 import model.Data_User;
 
+import java.awt.event.KeyEvent;
+
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -323,7 +325,7 @@ public class UI_Sewa extends javax.swing.JFrame {
 
     private void i_JumlahKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_i_JumlahKeyPressed
         // TODO add your handling code here:
-        if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9') {
+        if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
                i_Jumlah.setEditable(true);
         } 
         else {
@@ -334,7 +336,7 @@ public class UI_Sewa extends javax.swing.JFrame {
 
     private void i_HariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_i_HariKeyPressed
         // TODO add your handling code here:
-        if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9') {
+        if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
                i_Hari.setEditable(true);
         } 
         else {
