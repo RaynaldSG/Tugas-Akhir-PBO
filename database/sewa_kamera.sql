@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2023 at 10:28 AM
+-- Generation Time: May 22, 2023 at 06:52 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -20,6 +20,33 @@ SET time_zone = "+00:00";
 --
 -- Database: `sewa_kamera`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `history`
+--
+
+CREATE TABLE `history` (
+  `id` int(11) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `lama_sewa` int(11) NOT NULL,
+  `total` int(11) NOT NULL,
+  `description` text NOT NULL,
+  `tanggal_pinjam` datetime NOT NULL,
+  `tanggal_tenggat` datetime NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `status` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `history`
+--
+
+INSERT INTO `history` (`id`, `name`, `lama_sewa`, `total`, `description`, `tanggal_pinjam`, `tanggal_tenggat`, `user_id`, `status`) VALUES
+(2, 'user', 3, 1275000, 'Sony A7 IV(3x), Fujifilm X-H2(3x), Canon EOS R6(4x) ', '2023-05-22 20:56:33', '2023-05-25 20:56:33', 2, 'COMPLETED'),
+(3, 'user', 33, 12705000, 'Fujifilm X-H2(3x), Sony A7 IV(2x), Canon EOS R6(4x) ', '2023-05-22 21:05:51', '2023-06-24 21:05:51', 2, 'COMPLETED'),
+(4, 'user', 3, 1110000, 'Canon EOS R6(3x), Fujifilm X-H2(4x), Sony A7 IV(2x) ', '2023-05-22 22:57:51', '2023-05-25 22:57:51', 2, 'COMPLETED');
 
 -- --------------------------------------------------------
 
