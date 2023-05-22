@@ -4,6 +4,7 @@ import java.nio.file.*;
 import java.util.List;
 
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import DAO.DAO.DAO_Kamera;
 import errorhandler.H_Error;
@@ -82,7 +83,9 @@ public class C_DataManajemen {
     }
 
     public void getImage(){
+        FileNameExtensionFilter formatFilter = new FileNameExtensionFilter("Image Files", "jpg", "png", "jpeg");
         jc = new JFileChooser();
+        jc.setFileFilter(formatFilter);
         int pil = jc.showOpenDialog(null);
         String file_path;
         String currPath;

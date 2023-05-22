@@ -33,6 +33,7 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="b_Data" pref="130" max="32767" attributes="0"/>
                   <Component id="b_LogOut" max="32767" attributes="0"/>
+                  <Component id="b_History" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -46,8 +47,10 @@
               <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
               <Component id="b_Data" min="-2" pref="35" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="b_History" min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="b_LogOut" min="-2" pref="35" max="-2" attributes="0"/>
-              <EmptySpace pref="100" max="32767" attributes="0"/>
+              <EmptySpace pref="47" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -76,6 +79,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_LogOutActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="b_History">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="History"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_HistoryActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

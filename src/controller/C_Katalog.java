@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Image;
 import java.util.List;
 
 import javax.swing.ImageIcon;
