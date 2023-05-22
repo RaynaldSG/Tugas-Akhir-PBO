@@ -87,6 +87,7 @@ public class C_Sewa {
             data_Keranjangs.add(dk);
         }
         TabelKeranjang();
+        ui.getI_Jumlah().setText("");
     }
 
     public void TabelKeranjang(){

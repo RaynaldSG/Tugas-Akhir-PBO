@@ -40,7 +40,6 @@ C_Login login;
         jLabel4 = new javax.swing.JLabel();
         I_username = new javax.swing.JTextField();
         B_login = new javax.swing.JButton();
-        B_Guest = new javax.swing.JButton();
         I_password = new javax.swing.JPasswordField();
         B_Register = new javax.swing.JButton();
         C_ShowPass = new javax.swing.JCheckBox();
@@ -65,13 +64,6 @@ C_Login login;
         B_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_loginActionPerformed(evt);
-            }
-        });
-
-        B_Guest.setText("Guest");
-        B_Guest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_GuestActionPerformed(evt);
             }
         });
 
@@ -105,23 +97,22 @@ C_Login login;
                         .addGap(148, 148, 148)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(B_login, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(B_Register, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(B_Guest, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(96, 96, 96)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(I_username, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                            .addComponent(I_password)
-                            .addComponent(C_ShowPass))))
-                .addContainerGap(53, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(B_login, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                                .addComponent(B_Register, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(I_username, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                    .addComponent(I_password)
+                                    .addComponent(C_ShowPass))))))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +132,6 @@ C_Login login;
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(B_login)
-                    .addComponent(B_Guest)
                     .addComponent(B_Register))
                 .addContainerGap(69, Short.MAX_VALUE))
         );
@@ -170,10 +160,6 @@ C_Login login;
     private void I_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_I_passwordActionPerformed
         
     }//GEN-LAST:event_I_passwordActionPerformed
-
-    private void B_GuestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_GuestActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_B_GuestActionPerformed
 
     private void C_ShowPassStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_C_ShowPassStateChanged
         if(C_ShowPass.isSelected()){
@@ -251,7 +237,6 @@ C_Login login;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton B_Guest;
     private javax.swing.JButton B_Register;
     private javax.swing.JButton B_login;
     private javax.swing.JCheckBox C_ShowPass;

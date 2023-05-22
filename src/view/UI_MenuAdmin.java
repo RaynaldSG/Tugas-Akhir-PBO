@@ -30,6 +30,7 @@ public class UI_MenuAdmin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         b_Data = new javax.swing.JButton();
         b_LogOut = new javax.swing.JButton();
+        b_History = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +52,13 @@ public class UI_MenuAdmin extends javax.swing.JFrame {
             }
         });
 
+        b_History.setText("History");
+        b_History.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_HistoryActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -63,7 +71,8 @@ public class UI_MenuAdmin extends javax.swing.JFrame {
                 .addGap(137, 137, 137)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(b_Data, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                    .addComponent(b_LogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(b_LogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(b_History, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -74,8 +83,10 @@ public class UI_MenuAdmin extends javax.swing.JFrame {
                 .addGap(77, 77, 77)
                 .addComponent(b_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(b_History, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(b_LogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -94,6 +105,12 @@ public class UI_MenuAdmin extends javax.swing.JFrame {
         new_ui.setVisible(true);
         
     }//GEN-LAST:event_b_LogOutActionPerformed
+
+    private void b_HistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_HistoryActionPerformed
+        this.dispose();
+        UI_History new_ui = new UI_History();
+        new_ui.setVisible(true);
+    }//GEN-LAST:event_b_HistoryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,6 +149,7 @@ public class UI_MenuAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton b_Data;
+    private javax.swing.JButton b_History;
     private javax.swing.JButton b_LogOut;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2023 at 09:53 AM
+-- Generation Time: May 22, 2023 at 10:28 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -32,7 +32,7 @@ CREATE TABLE `kamera` (
   `model` varchar(30) NOT NULL,
   `merk` varchar(30) NOT NULL,
   `price` int(11) NOT NULL,
-  `img` varchar(100) NOT NULL
+  `img` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -41,7 +41,9 @@ CREATE TABLE `kamera` (
 
 INSERT INTO `kamera` (`id`, `model`, `merk`, `price`, `img`) VALUES
 (1, 'Sony A7 IV', 'Sony', 40000, '/assets/image/IMG_Sony-A7-IV.png'),
-(2, 'Fujifilm X-H2', 'Fujifilm', 35000, '/assets/image/Fujifilm-XH2.png');
+(2, 'Fujifilm X-H2', 'Fujifilm', 35000, '/assets/image/Fujifilm-XH2.png'),
+(4, 'Canon EOS R6', 'Canon', 50000, '/assets/image/Canon-EOS-R6 (1).jpg'),
+(6, 'tes', 'tes', 333, '');
 
 -- --------------------------------------------------------
 
@@ -64,7 +66,9 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`id`, `username`, `password`, `status`, `id_user`) VALUES
 (1, 'admin', 'admin', 'admin', NULL),
 (2, 'user', 'user', 'user', 2),
-(3, 'tes', 'tes', 'user', 3);
+(3, 'tes', 'tes', 'user', 3),
+(15, 'tes', 'tes1', 'user', 15),
+(17, 'tes', 'tes', 'user', 17);
 
 -- --------------------------------------------------------
 
@@ -85,7 +89,9 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `nama`, `alamat`, `telepon`) VALUES
 (2, 'user', 'user', 'user'),
-(3, 'tes', 'tes', '123');
+(3, 'tes', 'tes', '123'),
+(15, 'tes', 'tes', '123'),
+(17, 'dawdaw', 'dwad', '12');
 
 --
 -- Indexes for dumped tables
@@ -118,19 +124,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `kamera`
 --
 ALTER TABLE `kamera`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
