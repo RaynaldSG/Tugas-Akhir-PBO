@@ -339,7 +339,7 @@ public class UI_DataManajemen extends javax.swing.JFrame {
 
     private void b_ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_ResetActionPerformed
         // TODO add your handling code here:
-        cDataManajemen.resetButton();
+        cDataManajemen.reset();
     }//GEN-LAST:event_b_ResetActionPerformed
 
     private void i_PriceKeyPressed(java.awt.event.KeyEvent evt){
