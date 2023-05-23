@@ -136,8 +136,13 @@ public class C_DataManajemen {
         if(emptyCheck()){
             return;
         }
-
         daka = getDataInput();
+        for(int i = 0; i < data_Kameras.size(); i++){
+            if(daka.getModel().toLowerCase().equals(data_Kameras.get(i).getModel().toLowerCase())){
+                H_Error.data_exist();
+                return;
+            }
+        }
         dKamera.InsertData(daka);
         reset();
         DataTabel();

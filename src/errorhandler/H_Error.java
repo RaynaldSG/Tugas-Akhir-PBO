@@ -56,4 +56,7 @@ public class H_Error {
     public static void sama_uname(){
         JOptionPane.showMessageDialog(null, "Username telah terpakai", "Invalid Username", JOptionPane.INFORMATION_MESSAGE);
     }
+    public static void data_exist(){
+        JOptionPane.showMessageDialog(null, "Data sudah ada!!", "Data Already Exist", JOptionPane.INFORMATION_MESSAGE);
+    }
 }
