@@ -103,6 +103,7 @@ public class C_Sewa {
             }
             ui.getL_Total().setText(String.valueOf(total));
         }
+        ui.getL_Total().setText(String.valueOf(total));
         return;
     }
 
@@ -112,6 +113,7 @@ public class C_Sewa {
 
         if(hari <= 0){
             H_Error.minus_hari();
+            this.hari = 1;
         }
         else{
             for(int i = 0; i < data_Keranjangs.size(); i++){
