@@ -59,4 +59,7 @@ public class H_Error {
     public static void data_exist(){
         JOptionPane.showMessageDialog(null, "Data sudah ada!!", "Data Already Exist", JOptionPane.INFORMATION_MESSAGE);
     }
+    public static void out_of_stock(){
+        JOptionPane.showMessageDialog(null, "Stock habis atau tidak cukup", "Out Of Stock", JOptionPane.INFORMATION_MESSAGE);
+    }
 }

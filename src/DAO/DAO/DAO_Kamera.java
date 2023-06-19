@@ -24,8 +24,8 @@ public class DAO_Kamera implements IDAO_Kamera{
     Connection connection;
     final String getAll_query = "SELECT * FROM kamera";
     final String getById_query = "SELECT * FROM kamera WHERE id = ?";
-    final String Insert_query = "INSERT INTO kamera (id, model, merk, price, img) VALUES (NULL, ?, ?, ?, ?)";
-    final String Update_query = "UPDATE kamera SET model = ?, merk = ?, price = ?, img = ? WHERE id = ?";
+    final String Insert_query = "INSERT INTO kamera (id, model, merk, price, stock, img) VALUES (NULL, ?, ?, ?, ?, ?)";
+    final String Update_query = "UPDATE kamera SET model = ?, merk = ?, price = ?, stock = ? ,img = ? WHERE id = ?";
     final String Delete_query = "DELETE FROM kamera WHERE id = ?";
 
     public DAO_Kamera(){
@@ -45,6 +45,7 @@ public class DAO_Kamera implements IDAO_Kamera{
                 dakam.setModel(rs.getString("model"));
                 dakam.setMerk(rs.getString("merk"));
                 dakam.setPrice(rs.getInt("price"));
+                dakam.setStock(rs.getInt("stock"));
                 dakam.setImg(rs.getString("img"));
                 daka.add(dakam);
             }
@@ -67,7 +68,8 @@ public class DAO_Kamera implements IDAO_Kamera{
             st.setString(1, data_Kamera.getModel());
             st.setString(2, data_Kamera.getMerk());
             st.setInt(3, data_Kamera.getPrice());
-            st.setString(4, data_Kamera.getImg());
+            st.setInt(4, data_Kamera.getStock());
+            st.setString(5, data_Kamera.getImg());
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -88,8 +90,9 @@ public class DAO_Kamera implements IDAO_Kamera{
             st.setString(1, data_Kamera.getModel());
             st.setString(2, data_Kamera.getMerk());
             st.setInt(3, data_Kamera.getPrice());
-            st.setString(4, data_Kamera.getImg());
-            st.setInt(5, data_Kamera.getId());
+            st.setInt(4, data_Kamera.getStock());
+            st.setString(5, data_Kamera.getImg());
+            st.setInt(6, data_Kamera.getId());
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

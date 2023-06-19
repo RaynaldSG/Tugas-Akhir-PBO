@@ -19,18 +19,22 @@ public class T_Kamera extends AbstractTableModel{
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 5;
     }
 
     @Override
     public String getColumnName(int columnIndex){
         switch(columnIndex){
             case 0:
-                return "MODEL";
+                return "NO";
             case 1:
-                return "MERK";
+                return "MODEL";
             case 2:
+                return "MERK";
+            case 3:
                 return "PRICE";
+            case 4:
+                return "STOCK";
             default:
                 return null;
         }
@@ -40,11 +44,15 @@ public class T_Kamera extends AbstractTableModel{
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex){
             case 0:
-                return dk.get(rowIndex).getModel();
+                return rowIndex + 1;
             case 1:
-                return dk.get(rowIndex).getMerk();
+                return dk.get(rowIndex).getModel();
             case 2:
+                return dk.get(rowIndex).getMerk();
+            case 3:
                 return dk.get(rowIndex).getPrice();
+            case 4:
+                return dk.get(rowIndex).getStock();
             default:
                 return null;
         }

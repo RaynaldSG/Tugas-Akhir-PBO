@@ -13,6 +13,7 @@ public class Data_Kamera {
     private String model;
     private String merk;
     private Integer price;
+    private Integer stock;
     private String img; 
 
     public Integer getId() {
@@ -45,6 +46,14 @@ public class Data_Kamera {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 
     public String getImg() {

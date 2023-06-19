@@ -36,6 +36,7 @@ public class C_DataManajemen {
         ui.getI_Model().setText(data_Kameras.get(row).getModel());
         ui.getI_Merk().setText(data_Kameras.get(row).getMerk());
         ui.getI_Price().setText(String.valueOf(data_Kameras.get(row).getPrice()));
+        ui.getI_Stock().setText(String.valueOf(data_Kameras.get(row).getStock()));
     }
 
     public Data_Kamera getDataTable(int row){
@@ -45,6 +46,7 @@ public class C_DataManajemen {
         data_Kamera.setModel(data_Kameras.get(row).getModel());
         data_Kamera.setMerk(data_Kameras.get(row).getMerk());
         data_Kamera.setPrice(data_Kameras.get(row).getPrice());
+        data_Kamera.setStock(data_Kameras.get(row).getStock());
         data_Kamera.setImg(data_Kameras.get(row).getImg());
 
         return data_Kamera;
@@ -58,6 +60,7 @@ public class C_DataManajemen {
         ui.getI_Model().setText(daka.getModel());
         ui.getI_Merk().setText(daka.getMerk());
         ui.getI_Price().setText(String.valueOf(daka.getPrice()));
+        ui.getI_Stock().setText(String.valueOf(daka.getStock()));
         ui.getL_FileName().setText(daka.getImg());
         
         ui.getB_Delete().setEnabled(true);
@@ -70,6 +73,7 @@ public class C_DataManajemen {
         data_Kamera.setModel(ui.getI_Model().getText());
         data_Kamera.setMerk(ui.getI_Merk().getText());
         data_Kamera.setPrice(Integer.parseInt(ui.getI_Price().getText()));
+        data_Kamera.setStock(Integer.parseInt(ui.getI_Stock().getText()));
         
         if(ui.getL_FileName().getText() == null){
             System.out.println("Tes Condition");
@@ -189,6 +193,11 @@ public class C_DataManajemen {
             ui.getI_Price().requestFocus();
             return true;
         }
+        else if(ui.getI_Stock().getText().isEmpty()){
+            H_Error.empty_field();
+            ui.getI_Stock().requestFocus();
+            return true;
+        }
         else{
             return false;
         }
@@ -198,6 +207,7 @@ public class C_DataManajemen {
         ui.getI_Model().setText(null);
         ui.getI_Merk().setText(null);
         ui.getI_Price().setText(null);
+        ui.getI_Stock().setText(null);
         ui.getL_FileName().setText(null);
         ui.getB_Edit().setEnabled(false);
         ui.getB_Delete().setEnabled(false);
@@ -207,6 +217,7 @@ public class C_DataManajemen {
         ui.getI_Model().setText(null);
         ui.getI_Merk().setText(null);
         ui.getI_Price().setText(null);
+        ui.getI_Stock().setText(null);
         ui.getL_FileName().setText(null);
         ui.getB_Edit().setEnabled(true);
         ui.getB_Delete().setEnabled(true);

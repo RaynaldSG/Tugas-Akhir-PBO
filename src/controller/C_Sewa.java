@@ -16,9 +16,10 @@ public class C_Sewa {
     List<Data_Kamera> data_Kameras;
     List<Data_Keranjang> data_Keranjangs;
     Data_Keranjang dk;
+    Data_Kamera dataKameraUpdate;
     DAO_Kamera dKamera;
     UI_Sewa ui;
-    int hari;
+    int hari, stock;
 
     public C_Sewa(UI_Sewa ui){
         this.ui = ui;
@@ -37,6 +38,8 @@ public class C_Sewa {
         ui.getL_Model().setText(data_Kameras.get(row).getModel());
         ui.getL_Merk().setText(data_Kameras.get(row).getMerk());
         ui.getL_Harga().setText(String.valueOf(data_Kameras.get(row).getPrice()));
+        stock = data_Kameras.get(row).getStock();
+        GetSelectedTableData(row);
     }
 
     public void AddKeranjang(){
@@ -54,6 +57,11 @@ public class C_Sewa {
         }
         else if(Integer.parseInt(ui.getI_Jumlah().getText()) < 0){
             H_Error.minus_field();
+            ui.getI_Jumlah().requestFocus();
+            return;
+        }
+        else if(Integer.parseInt(ui.getI_Jumlah().getText()) > stock){
+            H_Error.out_of_stock();
             ui.getI_Jumlah().requestFocus();
             return;
         }
@@ -87,6 +95,7 @@ public class C_Sewa {
             data_Keranjangs.add(dk);
         }
         TabelKeranjang();
+        KameraTableUpdate();
         ui.getI_Jumlah().setText("");
     }
 
@@ -107,6 +116,24 @@ public class C_Sewa {
         return;
     }
 
+    public void KameraTableUpdate(){
+        dataKameraUpdate.setStock(dataKameraUpdate.getStock() - Integer.parseInt(ui.getI_Jumlah().getText()));
+        dKamera.UpdateData(dataKameraUpdate);
+        this.data_Kameras = dKamera.getAll();
+        TabelDataKamera();
+    }
+
+    public void GetSelectedTableData(int row){
+        dataKameraUpdate = new Data_Kamera();
+
+        dataKameraUpdate.setId(data_Kameras.get(row).getId()); 
+        dataKameraUpdate.setModel(data_Kameras.get(row).getModel()); 
+        dataKameraUpdate.setMerk(data_Kameras.get(row).getMerk()); 
+        dataKameraUpdate.setPrice(data_Kameras.get(row).getPrice()); 
+        dataKameraUpdate.setStock(data_Kameras.get(row).getStock()); 
+        dataKameraUpdate.setImg(data_Kameras.get(row).getImg()); 
+
+    }
 
     public void ControllerHari(){
         this.hari = Integer.parseInt(ui.getI_Hari().getText());

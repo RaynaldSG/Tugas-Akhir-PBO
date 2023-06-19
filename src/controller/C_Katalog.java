@@ -29,6 +29,7 @@ public class C_Katalog {
         ui.getL_Model().setText(daka.get(min).getModel());
         ui.getL_Merk().setText(daka.get(min).getMerk());
         ui.getL_Price().setText("Rp. " + String.valueOf(daka.get(min).getPrice()) + " /hari");
+        ui.getL_Stock().setText(String.valueOf(daka.get(min).getStock()));
         imageIcon = new ImageIcon(getClass().getResource(daka.get(min).getImg()));
         ui.getL_IMG().setIcon(imageIcon);
         System.out.println(daka.get(min).getImg());
@@ -56,8 +57,16 @@ public class C_Katalog {
         ui.getL_Model().setText(daka.get(curr).getModel());
         ui.getL_Merk().setText(daka.get(curr).getMerk());
         ui.getL_Price().setText("Rp. " + String.valueOf(daka.get(curr).getPrice()) + " /hari");
-        imageIcon = new ImageIcon(getClass().getResource(daka.get(curr).getImg()));
-        ui.getL_IMG().setIcon(imageIcon);
+        ui.getL_Stock().setText(String.valueOf(daka.get(curr).getStock()));
+        try {
+            imageIcon = new ImageIcon(getClass().getResource(daka.get(curr).getImg()));
+            ui.getL_IMG().setIcon(imageIcon);
+        } catch (Exception e) {
+            System.out.println("Image tidak ada di folder assets atau image belum dimasukkan");
+            imageIcon = new ImageIcon(getClass().getResource("/assets/icon/I_NoIMG.png"));
+            ui.getL_IMG().setIcon(imageIcon);
+        }
         System.out.println(daka.get(curr).getImg());
+        System.out.println(this.curr);
     }
 }

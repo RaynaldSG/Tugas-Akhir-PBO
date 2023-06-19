@@ -16,7 +16,7 @@ public class main {
 
         datan = dao_Login.getLoginData(dataa);
         if(datan == null){
-            System.out.println("Null woi");
+            System.out.println("Null");
         }
 
         UI_Login ui = new UI_Login();
