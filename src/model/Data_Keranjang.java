@@ -1,12 +1,21 @@
 package model;
 
 public class Data_Keranjang {
+    private Integer id_kamera;
     private String model;
     private String merek;
     private Integer jumlah;
     private Integer price;
     private Integer hari;
     private Integer total;
+
+    public Integer getId_kamera() {
+        return id_kamera;
+    }
+
+    public void setId_kamera(Integer id_kamera) {
+        this.id_kamera = id_kamera;
+    }
 
     public String getModel() {
         return model;

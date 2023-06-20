@@ -14,6 +14,6 @@ import model.Data_Riwayat;
  */
 public interface IDAO_Riwayat {
     public List<Data_Riwayat> getAll();
-    public void insert(Data_Riwayat data_Riwayat);
+    public int insert(Data_Riwayat data_Riwayat);
     public void update_Status(int id);
 }

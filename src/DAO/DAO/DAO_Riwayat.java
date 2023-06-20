@@ -47,10 +47,12 @@ public class DAO_Riwayat implements IDAO_Riwayat{
     }
 
     @Override
-    public void insert(Data_Riwayat data_Riwayat) {
+    public int insert(Data_Riwayat data_Riwayat) {
         PreparedStatement st = null;
+        Integer h_id = null;
+
         try {
-            st = connection.prepareStatement(insert_query);
+            st = connection.prepareStatement(insert_query, Statement.RETURN_GENERATED_KEYS);
             st.setString(1, data_Riwayat.getName());
             st.setInt(2, data_Riwayat.getHari());
             st.setInt(3, data_Riwayat.getTotal());
@@ -60,6 +62,10 @@ public class DAO_Riwayat implements IDAO_Riwayat{
             st.setInt(7, data_Riwayat.getUser_id());
             st.setString(8, "INCOMPLETED");
             st.executeUpdate();
+            ResultSet rs = st.getGeneratedKeys();
+            if(rs.next()){
+                h_id = rs.getInt(1);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }finally{
@@ -69,6 +75,7 @@ public class DAO_Riwayat implements IDAO_Riwayat{
                 e.printStackTrace();
             }
         }
+        return h_id;
     }
 
     @Override

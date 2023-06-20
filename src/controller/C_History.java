@@ -2,9 +2,13 @@ package controller;
 
 import java.util.List;
 
+import DAO.DAO.DAO_DataSewa;
+import DAO.DAO.DAO_Kamera;
 import DAO.DAO.DAO_Riwayat;
 import DAO.DAO.DAO_User;
+import model.Data_Kamera;
 import model.Data_Riwayat;
+import model.Data_Sewa;
 import model.Data_User;
 import model.T_Riwayat;
 import view.UI_History;
@@ -13,6 +17,8 @@ public class C_History {
     List<Data_Riwayat> data_Riwayats;
     DAO_Riwayat dRiwayat;
     DAO_User dUser;
+    DAO_DataSewa DAOSewa;
+    DAO_Kamera DAOKamera;
     Data_User data_User;
     UI_History ui;
 
@@ -21,6 +27,8 @@ public class C_History {
         dRiwayat = new DAO_Riwayat();
         this.data_Riwayats = dRiwayat.getAll();
         dUser = new DAO_User();
+        DAOSewa = new DAO_DataSewa();
+        DAOKamera = new DAO_Kamera();
     }
 
     public void show_Table(){
@@ -38,7 +46,17 @@ public class C_History {
     }
 
     public void markData(int row){
+        List<Data_Sewa> dSewa;
+        Data_Kamera data_Kamera;
+
         dRiwayat.update_Status(data_Riwayats.get(row).getId());
+        dSewa = DAOSewa.getByHistoryID(data_Riwayats.get(row).getId());
+        for(int i = 0; i < dSewa.size(); i++){
+            data_Kamera = DAOKamera.getById(dSewa.get(i).getId_kamera());
+            data_Kamera.setStock(data_Kamera.getStock() + dSewa.get(i).getJumlah());
+            DAOKamera.UpdateData(data_Kamera);
+        }
+        DAOSewa.UpdateStatus(data_Riwayats.get(row).getId());
         System.out.println(data_Riwayats.get(row).getId());
     }
 

@@ -57,7 +57,27 @@ public class DAO_Kamera implements IDAO_Kamera{
 
     @Override
     public Data_Kamera getById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        PreparedStatement st = null;
+        ResultSet rs;
+        Data_Kamera data_Kamera = null;
+
+        try {
+            st = connection.prepareStatement(getById_query);
+            st.setInt(1, id);
+            rs = st.executeQuery();
+            if(rs.next()){
+                data_Kamera = new Data_Kamera();
+                data_Kamera.setId(rs.getInt("id"));
+                data_Kamera.setModel(rs.getString("model"));
+                data_Kamera.setMerk(rs.getString("merk"));
+                data_Kamera.setPrice(rs.getInt("price"));
+                data_Kamera.setStock(rs.getInt("stock"));
+                data_Kamera.setImg(rs.getString("img"));
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(Data_Kamera.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return data_Kamera;
     }
 
     @Override

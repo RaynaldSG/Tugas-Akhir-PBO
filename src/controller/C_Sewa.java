@@ -66,6 +66,7 @@ public class C_Sewa {
             return;
         }
 
+        dk.setId_kamera(dataKameraUpdate.getId());
         dk.setModel(ui.getL_Model().getText());
         dk.setMerek(ui.getL_Merk().getText());
         dk.setPrice(Integer.parseInt(ui.getL_Harga().getText()));
@@ -78,24 +79,27 @@ public class C_Sewa {
         if(!data_Keranjangs.isEmpty()){
             check = CheckCopy(dk);
             if(check == -1){
+                KameraTableUpdate(dk);
                 data_Keranjangs.add(dk);
             }
             else{
                 if(dk.getJumlah().equals(0)){
+                    KameraTableUpdate(dk);
                     HapusDataKeranjang(dk.getModel());
                     System.out.println("Masuk Sistem Hapus");
                 }
                 else{
+                    KameraTableUpdate(dk);
                     data_Keranjangs.get(check).setJumlah(dk.getJumlah());
                     data_Keranjangs.get(check).setTotal(dk.getTotal());
                 }
             }
         }
         else{
+            KameraTableUpdate(dk);
             data_Keranjangs.add(dk);
         }
         TabelKeranjang();
-        KameraTableUpdate();
         ui.getI_Jumlah().setText("");
     }
 
@@ -116,8 +120,23 @@ public class C_Sewa {
         return;
     }
 
-    public void KameraTableUpdate(){
-        dataKameraUpdate.setStock(dataKameraUpdate.getStock() - Integer.parseInt(ui.getI_Jumlah().getText()));
+    public void KameraTableUpdate(Data_Keranjang dk){
+        int copy;
+
+        int jumUI = Integer.parseInt(ui.getI_Jumlah().getText());
+        copy = CheckCopy(dk);
+
+        if(copy != -1){
+            if(jumUI < data_Keranjangs.get(copy).getJumlah()){
+                dataKameraUpdate.setStock(dataKameraUpdate.getStock() + data_Keranjangs.get(copy).getJumlah() - jumUI);
+            }
+            else if(jumUI > data_Keranjangs.get(copy).getJumlah()){
+                dataKameraUpdate.setStock(dataKameraUpdate.getStock() - (jumUI - data_Keranjangs.get(copy).getJumlah()));
+            }
+        }
+        else {
+        dataKameraUpdate.setStock(dataKameraUpdate.getStock() - jumUI);
+        }
         dKamera.UpdateData(dataKameraUpdate);
         this.data_Kameras = dKamera.getAll();
         TabelDataKamera();

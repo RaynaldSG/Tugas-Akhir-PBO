@@ -18,7 +18,7 @@ public class SQL_Connection {
     public static Connection connection(){
         if(con == null){
             MysqlDataSource db_data = new MysqlDataSource();
-            db_data.setDatabaseName("kamera_db");
+            db_data.setDatabaseName("sewakamera_db");
             db_data.setUser("root");
             db_data.setPassword("");
             try {

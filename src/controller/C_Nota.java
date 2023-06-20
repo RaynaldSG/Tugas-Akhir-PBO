@@ -4,9 +4,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import DAO.DAO.DAO_DataSewa;
 import DAO.DAO.DAO_Riwayat;
 import model.Data_Keranjang;
 import model.Data_Riwayat;
+import model.Data_Sewa;
 import model.Data_User;
 import model.T_Keranjang;
 import view.UI_Nota;
@@ -17,15 +19,18 @@ public class C_Nota {
     Data_User data_User;
     Data_Riwayat data_Riwayat;
     DAO_Riwayat dRiwayat;
+    DAO_DataSewa DAOSewa;
     String ct;
     String rt;
     int total = 0;
+    Integer id_history;
 
     public C_Nota(UI_Nota ui, Data_User data_User, List<Data_Keranjang> data_Keranjangs){
         this.ui = ui;
         this.data_User = data_User;
         this.data_Keranjangs = data_Keranjangs;
         dRiwayat = new DAO_Riwayat();
+        DAOSewa = new DAO_DataSewa();
     }
 
     public void T_Keranjang(){
@@ -77,7 +82,20 @@ public class C_Nota {
         data_Riwayat.setT_tenggat(rt);
         data_Riwayat.setUser_id(data_User.getId_User());
 
-        dRiwayat.insert(data_Riwayat);
+        this.id_history = dRiwayat.insert(data_Riwayat);
+        DataSewa_Insert();
+    }
+
+    public void DataSewa_Insert(){
+        Data_Sewa dSewa;
+
+        for (int i = 0; i < data_Keranjangs.size(); i++) {
+            dSewa = new Data_Sewa();
+            dSewa.setId_history(id_history);
+            dSewa.setId_kamera(data_Keranjangs.get(i).getId_kamera());
+            dSewa.setJumlah(data_Keranjangs.get(i).getJumlah());
+            DAOSewa.insert(dSewa);
+        }
     }
 
     public String makeDesc(){
