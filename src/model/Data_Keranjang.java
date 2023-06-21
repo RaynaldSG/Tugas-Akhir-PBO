@@ -64,7 +64,5 @@ public class Data_Keranjang {
     public void setTotal(Integer total) {
         this.total = total;
     }
-
-    
     
 }
