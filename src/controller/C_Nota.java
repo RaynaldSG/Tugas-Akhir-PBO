@@ -166,8 +166,8 @@ public class C_Nota {
             writer.println("|| -" + String.format("%105s", "-").replace(" ", "-") + " ||");
             writer.println("||" + textRight("||", 110));
             writer.println("||" + textRight("||", 110));
-            writer.println("|| Tanggal Sewa    : " + textLeft(data_Riwayat.getT_pinjam(), 89) + "||");
-            writer.println("|| Tanggal Kembali : " + textLeft(data_Riwayat.getT_tenggat(), 89) + "||");
+            writer.println("|| Tanggal Sewa    : " + textLeft(ui.getL_TanggalS().getText(), 89) + "||");
+            writer.println("|| Tanggal Kembali : " + textLeft(ui.getL_TanggalP().getText(), 89) + "||");
             writer.println("||" + textRight("||", 110));
             writer.println(String.format("%112s", "=").replace(" ", "="));
             System.out.println("File Is Written");

@@ -187,6 +187,9 @@ public class UI_History extends javax.swing.JFrame {
         this.row = t_Riwayat.getSelectedRow();
         cHistory.show_Data(row);
         b_Mark.setEnabled(true);
+        if(t_Riwayat.getValueAt(row, 7).equals("COMPLETED")){
+            b_Mark.setEnabled(false);
+        }
     }//GEN-LAST:event_t_RiwayatMouseClicked
 
     private void b_MarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_MarkActionPerformed

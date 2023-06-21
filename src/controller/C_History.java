@@ -2,6 +2,8 @@ package controller;
 
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import DAO.DAO.DAO_DataSewa;
 import DAO.DAO.DAO_Kamera;
 import DAO.DAO.DAO_Riwayat;
@@ -52,9 +54,15 @@ public class C_History {
         dRiwayat.update_Status(data_Riwayats.get(row).getId());
         dSewa = DAOSewa.getByHistoryID(data_Riwayats.get(row).getId());
         for(int i = 0; i < dSewa.size(); i++){
-            data_Kamera = DAOKamera.getById(dSewa.get(i).getId_kamera());
-            data_Kamera.setStock(data_Kamera.getStock() + dSewa.get(i).getJumlah());
-            DAOKamera.UpdateData(data_Kamera);
+            System.out.println(dSewa.get(i).getId_kamera());
+            if(dSewa.get(i).getId_kamera() == 0){
+                JOptionPane.showMessageDialog(null, "Terdapat Data Kamera yang Telah dihapus atau Hilang." , "Missing Data", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else{
+                data_Kamera = DAOKamera.getById(dSewa.get(i).getId_kamera());
+                data_Kamera.setStock(data_Kamera.getStock() + dSewa.get(i).getJumlah());
+                DAOKamera.UpdateData(data_Kamera);
+            }
         }
         DAOSewa.UpdateStatus(data_Riwayats.get(row).getId());
         System.out.println(data_Riwayats.get(row).getId());
