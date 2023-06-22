@@ -154,6 +154,16 @@ public class C_Sewa {
 
     }
 
+    public void backButtonController(){
+        Data_Kamera dataKameraRollback;
+
+        for(int i = 0; i < data_Keranjangs.size(); i++){
+            dataKameraRollback = dKamera.getById(data_Keranjangs.get(i).getId_kamera());
+            dataKameraRollback.setStock(dataKameraRollback.getStock() + data_Keranjangs.get(i).getJumlah());
+            dKamera.UpdateData(dataKameraRollback);
+        }
+    }
+
     public void ControllerHari(){
         this.hari = Integer.parseInt(ui.getI_Hari().getText());
 

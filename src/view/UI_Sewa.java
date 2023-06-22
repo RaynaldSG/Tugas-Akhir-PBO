@@ -346,6 +346,7 @@ public class UI_Sewa extends javax.swing.JFrame {
 
     private void b_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_BackActionPerformed
         // TODO add your handling code here:
+        Csewa.backButtonController();
         this.dispose();
         UI_MenuUser new_ui = new UI_MenuUser(data_User);
         new_ui.setVisible(true);
