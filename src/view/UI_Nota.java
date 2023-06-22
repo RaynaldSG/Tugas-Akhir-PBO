@@ -250,7 +250,6 @@ public class UI_Nota extends javax.swing.JFrame {
     private void b_ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_ConfirmActionPerformed
         // TODO add your handling code here:
         cNota.History_Insert();
-        cNota.makeFile();
         this.dispose();
         UI_MenuUser new_ui = new UI_MenuUser(data_User);
         new_ui.setVisible(true);

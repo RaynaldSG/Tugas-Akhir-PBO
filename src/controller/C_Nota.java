@@ -13,6 +13,7 @@ import javax.swing.filechooser.FileSystemView;
 
 import DAO.DAO.DAO_DataSewa;
 import DAO.DAO.DAO_Riwayat;
+import FileMaker.NotaMaker;
 import model.Data_Keranjang;
 import model.Data_Riwayat;
 import model.Data_Sewa;
@@ -31,8 +32,6 @@ public class C_Nota {
     String rt;
     int total = 0;
     Integer id_history;
-    String fileName;
-    private File file;
 
     public C_Nota(UI_Nota ui, Data_User data_User, List<Data_Keranjang> data_Keranjangs){
         this.ui = ui;
@@ -93,6 +92,7 @@ public class C_Nota {
 
         this.id_history = dRiwayat.insert(data_Riwayat);
         DataSewa_Insert();
+        NotaMaker.makeFile(data_User, data_Keranjangs, data_Riwayat);
     }
 
     public void DataSewa_Insert(){
@@ -119,72 +119,6 @@ public class C_Nota {
         desc = desc + data_Keranjangs.get(limit-1).getModel() + "(" + data_Keranjangs.get(limit-1).getJumlah() + "x) ";
 
         return desc;
-    }
-
-    public void makeFile(){
-        String docPath;
-
-        docPath = FileSystemView.getFileSystemView().getDefaultDirectory().getPath();
-        fileName = docPath + "\\" + data_User.getNama() + ".txt";
-
-        this.file = new File(fileName);
-        try {
-            if(file.createNewFile()){
-                System.out.println("FIle Created");
-            }
-            else{
-                System.out.println("File Already Exist");
-            }
-            writeFile();
-        } catch (IOException e) {
-            System.out.println("Gagal");
-            e.printStackTrace();
-        }
-    }
-
-    public void writeFile(){
-        PrintStream writer = null;
-
-        try {
-            writer = new PrintStream(file);
-            writer.println(String.format("%112s", "=").replace(" ", "="));
-            writer.println("||" + String.format("%59s%51s" , "NOTA SEWA", "||"));
-            writer.println(String.format("%112s", "=").replace(" ", "="));
-            writer.println("|| " + textLeft("Data Penyewa: ", 107) + "||");
-            writer.println("|| Nama" + textRight(": ", 11) + data_User.getNama() + textRight("||", 97 - 7));
-            writer.println("|| Alamat" + textRight(": ", 9) + data_User.getAlamat() + textRight("||", 97 - 7));
-            writer.println("|| Telepon" + textRight(": ", 8) + data_User.getTelepon() + textRight("||", 97 - 7));
-            writer.println("||" + textRight("||", 110));
-            writer.println("|| Data Kamera:" + textRight("||", 97));
-            writer.println("|| -" + String.format("%105s", "-").replace(" ", "-") + " ||");
-            writer.println("|| | NO |             MODEL             |        MERK        |     PRICE     | JUMLAH |        TOTAL        | ||");
-            for(int i = 0; i < data_Keranjangs.size(); i++){
-                writer.println("|| |" + textRight(String.valueOf(i + 1), 3) + " | " + textLeft(data_Keranjangs.get(i).getModel(), 30) + "| " + textLeft(data_Keranjangs.get(i).getMerek(), 19) + "| Rp" + textLeft(String.valueOf(data_Keranjangs.get(i).getPrice()), 12) + "| " + textLeft(String.valueOf(data_Keranjangs.get(i).getJumlah()), 7) + "| " + textLeft("Rp" + String.valueOf(data_Keranjangs.get(i).getTotal()), 20) + "| ||");
-            }
-            writer.println("|| -" + String.format("%105s", "-").replace(" ", "-") + " ||");
-            writer.println("|| |" + textRight(" ", 41) + textLeft("Total", 41) + "| " + textRight("Rp" + data_Riwayat.getTotal(), 20) + "| ||");
-            writer.println("|| -" + String.format("%105s", "-").replace(" ", "-") + " ||");
-            writer.println("||" + textRight("||", 110));
-            writer.println("||" + textRight("||", 110));
-            writer.println("|| Tanggal Sewa    : " + textLeft(ui.getL_TanggalS().getText(), 89) + "||");
-            writer.println("|| Tanggal Kembali : " + textLeft(ui.getL_TanggalP().getText(), 89) + "||");
-            writer.println("||" + textRight("||", 110));
-            writer.println(String.format("%112s", "=").replace(" ", "="));
-            System.out.println("File Is Written");
-            JOptionPane.showMessageDialog(null, "File nota anda tersimpan pada folder " + fileName , "Nota", JOptionPane.INFORMATION_MESSAGE);
-            writer.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
-
-    public static String textLeft(String s, int n) {
-        return String.format("%-" + n + "s", s);
-    }
-
-    public static String textRight(String s, int n) {
-        return String.format("%" + n + "s", s);
     }
 
 }
