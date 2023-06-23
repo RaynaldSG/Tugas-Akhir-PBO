@@ -59,7 +59,12 @@ public class C_Katalog {
         ui.getL_Price().setText("Rp. " + String.valueOf(daka.get(curr).getPrice()) + " /hari");
         ui.getL_Stock().setText(String.valueOf(daka.get(curr).getStock()));
         try {
-            imageIcon = new ImageIcon(getClass().getResource(daka.get(curr).getImg()));
+            if(daka.get(curr).getImg().isEmpty()){
+                imageIcon = new ImageIcon(getClass().getResource("/assets/icon/I_NoIMG.png"));
+            }
+            else{
+                imageIcon = new ImageIcon(getClass().getResource(daka.get(curr).getImg()));
+            }
             ui.getL_IMG().setIcon(imageIcon);
         } catch (Exception e) {
             System.out.println("Image tidak ada di folder assets atau image belum dimasukkan");

@@ -24,7 +24,7 @@ public class NotaMaker {
         String docPath;
 
         docPath = FileSystemView.getFileSystemView().getDefaultDirectory().getPath();
-        fileName = docPath + "\\" + data_User.getNama() + ".txt";
+        fileName = docPath + "\\" + data_User.getNama() + "_NOTA.txt";
 
         file = new File(fileName);
         try {
@@ -50,9 +50,9 @@ public class NotaMaker {
             writer.println("||" + String.format("%59s%51s" , "NOTA SEWA", "||"));
             writer.println(String.format("%112s", "=").replace(" ", "="));
             writer.println("|| " + textLeft("Data Penyewa: ", 107) + "||");
-            writer.println("|| Nama" + textRight(": ", 11) + data_User.getNama() + textRight("||", 97 - 7));
-            writer.println("|| Alamat" + textRight(": ", 9) + data_User.getAlamat() + textRight("||", 97 - 7));
-            writer.println("|| Telepon" + textRight(": ", 8) + data_User.getTelepon() + textRight("||", 97 - 7));
+            writer.println("|| Nama" + textRight(": ", 11) + textLeft(data_User.getNama(), 92) + "||");
+            writer.println("|| Alamat" + textRight(": ", 9) + textLeft(data_User.getAlamat(), 92) + "||");
+            writer.println("|| Telepon" + textRight(": ", 8) + textLeft(data_User.getTelepon(), 92) + "||");
             writer.println("||" + textRight("||", 110));
             writer.println("|| Data Kamera:" + textRight("||", 97));
             writer.println("|| -" + String.format("%105s", "-").replace(" ", "-") + " ||");
