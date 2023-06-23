@@ -62,4 +62,7 @@ public class H_Error {
     public static void out_of_stock(){
         JOptionPane.showMessageDialog(null, "Stock habis atau tidak cukup", "Out Of Stock", JOptionPane.INFORMATION_MESSAGE);
     }
+    public static void katalog_Kosong(){
+        JOptionPane.showMessageDialog(null, "Tidak ada data kamera", "Data Kosong", JOptionPane.WARNING_MESSAGE);
+    }
 }

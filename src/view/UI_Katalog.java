@@ -4,9 +4,12 @@
  */
 package view;
 
+import java.awt.event.ActionEvent;
+
 import javax.swing.JLabel;
 
 import controller.C_Katalog;
+import javax.swing.JButton;
 import model.Data_User;
 
 /**
@@ -21,7 +24,7 @@ public class UI_Katalog extends javax.swing.JFrame {
      */
     public UI_Katalog(Data_User data_User) {
         initComponents();
-        cKatalog = new C_Katalog(this);
+        cKatalog = new C_Katalog(this, data_User);
         this.setLocationRelativeTo(null);
         this.data_User = data_User;
         cKatalog.awal();
@@ -253,6 +256,18 @@ public class UI_Katalog extends javax.swing.JFrame {
 
     public JLabel getL_Stock() {
         return l_Stock;
+    }
+
+    public JButton getB_Next() {
+        return b_Next;
+    }
+
+    public JButton getB_Prev() {
+        return b_Prev;
+    }
+
+    public JButton getB_back() {
+        return b_back;
     }
     
     
