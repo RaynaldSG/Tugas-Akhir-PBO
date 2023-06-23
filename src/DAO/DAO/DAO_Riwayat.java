@@ -13,6 +13,7 @@ import project.SQL_Connection;
 public class DAO_Riwayat implements IDAO_Riwayat{
     Connection connection;
     final String getAll_query = "SELECT * FROM history";
+    final String getByUserID_query = "SELECT * FROM history WHERE user_id = ?";
     final String insert_query = "INSERT INTO history (id, name, lama_sewa, total, description, tanggal_pinjam, tanggal_tenggat, user_id, status) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)";
     final String update_query = "UPDATE history SET status = ? WHERE id = ?";
 
@@ -44,6 +45,38 @@ public class DAO_Riwayat implements IDAO_Riwayat{
             Logger.getLogger(Data_Riwayat.class.getName()).log(Level.SEVERE, null, e);
         }
         return dari;
+    }
+
+    public List<Data_Riwayat> getByUserID(int id){
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        List<Data_Riwayat> data_Riwayats = null;
+        Data_Riwayat data_Riwayat;
+
+        try {
+            data_Riwayats = new ArrayList<Data_Riwayat>();
+            st = connection.prepareStatement(getByUserID_query);
+            st.setInt(1, id);
+            rs = st.executeQuery();
+
+            while(rs.next()){
+                data_Riwayat = new Data_Riwayat();
+                data_Riwayat.setId(rs.getInt("id"));
+                data_Riwayat.setName(rs.getString("name"));
+                data_Riwayat.setHari(rs.getInt("lama_sewa"));           
+                data_Riwayat.setTotal(rs.getInt("total"));  
+                data_Riwayat.setDesc(rs.getString("description"));         
+                data_Riwayat.setT_pinjam(rs.getString("tanggal_pinjam"));
+                data_Riwayat.setT_tenggat(rs.getString("tanggal_tenggat"));         
+                data_Riwayat.setUser_id(rs.getInt("user_id")); 
+                data_Riwayat.setStatus(rs.getString("status"));
+                data_Riwayats.add(data_Riwayat);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(Data_Riwayat.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
+        return data_Riwayats;
     }
 
     @Override

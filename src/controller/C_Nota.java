@@ -1,15 +1,8 @@
 package controller;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileSystemView;
 
 import DAO.DAO.DAO_DataSewa;
 import DAO.DAO.DAO_Riwayat;
@@ -65,7 +58,7 @@ public class C_Nota {
 
     public void Time_Controller(){
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("dd/MM/YYY HH:mm:ss");
-        DateTimeFormatter timeFormatSQL = DateTimeFormatter.ofPattern("YYY/MM/dd HH:mm:ss");
+        DateTimeFormatter timeFormatSQL = DateTimeFormatter.ofPattern("YYY-MM-dd HH:mm:ss");
         LocalDateTime currentTime = LocalDateTime.now();
         LocalDateTime returnTime;
 
@@ -92,7 +85,7 @@ public class C_Nota {
 
         this.id_history = dRiwayat.insert(data_Riwayat);
         DataSewa_Insert();
-        NotaMaker.makeFile(data_User, data_Keranjangs, data_Riwayat);
+        NotaMaker.makeFile(data_User, DAOSewa.getByHistoryID(id_history), data_Riwayat);
     }
 
     public void DataSewa_Insert(){
@@ -102,6 +95,9 @@ public class C_Nota {
             dSewa = new Data_Sewa();
             dSewa.setId_history(id_history);
             dSewa.setId_kamera(data_Keranjangs.get(i).getId_kamera());
+            dSewa.setModelKamera(data_Keranjangs.get(i).getModel());
+            dSewa.setMerkKamera(data_Keranjangs.get(i).getMerek());
+            dSewa.setPrice(data_Keranjangs.get(i).getPrice());
             dSewa.setJumlah(data_Keranjangs.get(i).getJumlah());
             DAOSewa.insert(dSewa);
         }

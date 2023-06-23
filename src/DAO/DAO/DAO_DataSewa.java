@@ -14,7 +14,7 @@ public class DAO_DataSewa implements IDAO_DataSewa{
     Connection connection;
     final String query_getAll = "SELECT * FROM data_sewa";
     final String query_getByHistoryID = "SELECT * FROM data_sewa WHERE id_history = ?";
-    final String query_Insert = "INSERT INTO data_sewa (id, id_history, id_kamera, jumlah, status) VALUES (NULL, ?, ?, ?, 'Belum Dikembalikan')";
+    final String query_Insert = "INSERT INTO data_sewa (id, id_history, id_kamera, model, merk, price, jumlah, status) VALUES (NULL, ?, ?, ?, ?, ?, ?, 'Belum DIkembalikan')";
     final String query_Update = "UPDATE data_sewa SET status = 'Dikembalikan' WHERE id_history = ?";
 
     public DAO_DataSewa(){
@@ -33,6 +33,9 @@ public class DAO_DataSewa implements IDAO_DataSewa{
                 data_Sewa.setId(rs.getInt("id"));
                 data_Sewa.setId_history(rs.getInt("id_history"));
                 data_Sewa.setId_kamera(rs.getInt("id_kamera"));
+                data_Sewa.setModelKamera(rs.getString("model"));
+                data_Sewa.setMerkKamera(rs.getString("merk"));
+                data_Sewa.setPrice(rs.getInt("price"));
                 data_Sewa.setJumlah(rs.getInt("jumlah"));
                 data_Sewa.setStatus(rs.getString("status"));
                 dase.add(data_Sewa);
@@ -60,6 +63,9 @@ public class DAO_DataSewa implements IDAO_DataSewa{
                 data_Sewa.setId(rs.getInt("id"));
                 data_Sewa.setId_history(rs.getInt("id_history"));
                 data_Sewa.setId_kamera(rs.getInt("id_kamera"));
+                data_Sewa.setModelKamera(rs.getString("model"));
+                data_Sewa.setMerkKamera(rs.getString("merk"));
+                data_Sewa.setPrice(rs.getInt("price"));
                 data_Sewa.setJumlah(rs.getInt("jumlah"));
                 data_Sewa.setStatus(rs.getString("status"));
                 dase.add(data_Sewa);
@@ -78,7 +84,10 @@ public class DAO_DataSewa implements IDAO_DataSewa{
             st = connection.prepareStatement(query_Insert);
             st.setInt(1, dSewa.getId_history());
             st.setInt(2, dSewa.getId_kamera());
-            st.setInt(3, dSewa.getJumlah());
+            st.setString(3, dSewa.getModelKamera());
+            st.setString(4, dSewa.getMerkKamera());
+            st.setInt(5, dSewa.getPrice());
+            st.setInt(6, dSewa.getJumlah());
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
