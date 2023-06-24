@@ -64,9 +64,11 @@ public class NotaMaker {
             writer.println("|| |" + textRight(" ", 41) + textLeft("Total", 41) + "| " + textRight("Rp" + data_Riwayat.getTotal(), 20) + "| ||");
             writer.println("|| -" + String.format("%105s", "-").replace(" ", "-") + " ||");
             writer.println("||" + textRight("||", 110));
-            writer.println("||" + textRight("||", 110));
+            writer.println("|| Lama Sewa       : " + textLeft(String.valueOf(data_Riwayat.getHari() + " Hari"), 89) + "||");
             writer.println("|| Tanggal Sewa    : " + textLeft(formatDate(data_Riwayat.getT_pinjam()), 89) + "||");
             writer.println("|| Tanggal Kembali : " + textLeft(formatDate(data_Riwayat.getT_tenggat()), 89) + "||");
+            writer.println("||" + textRight("||", 110));
+            writer.println("|| Status: " + textLeft(data_Riwayat.getStatus(), 99) + "||");
             writer.println("||" + textRight("||", 110));
             writer.println(String.format("%112s", "=").replace(" ", "="));
             System.out.println("File Is Written");
