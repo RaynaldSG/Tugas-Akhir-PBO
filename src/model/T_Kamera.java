@@ -30,11 +30,11 @@ public class T_Kamera extends AbstractTableModel{
             case 1:
                 return "MODEL";
             case 2:
-                return "MERK";
+                return "MEREK";
             case 3:
-                return "PRICE";
+                return "HARGA";
             case 4:
-                return "STOCK";
+                return "STOK";
             default:
                 return null;
         }

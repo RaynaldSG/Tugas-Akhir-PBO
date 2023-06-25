@@ -27,7 +27,7 @@ public class T_RiwayatUser extends AbstractTableModel {
             case 0:
                 return "NO";
             case 1:
-                return "DESCRIPTION";
+                return "DESKRIPSI";
             case 2:
                 return "LAMA SEWA";
             case 3:

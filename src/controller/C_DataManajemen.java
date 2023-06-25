@@ -1,8 +1,11 @@
 package controller;
 
+import java.io.File;
 import java.nio.file.*;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -129,6 +132,15 @@ public class C_DataManajemen {
 
             Path new_file = dest.resolve(file_name);
             Files.copy(source, new_file, StandardCopyOption.REPLACE_EXISTING);
+
+            ImageIcon Nimage = new ImageIcon(new_file.toString());
+            if(Nimage.getIconWidth() > 450){
+                H_Error.ImageBig();
+            }
+            else if(Nimage.getIconHeight() > 300){
+                H_Error.ImageBig();
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

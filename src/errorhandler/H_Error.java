@@ -65,4 +65,7 @@ public class H_Error {
     public static void katalog_Kosong(){
         JOptionPane.showMessageDialog(null, "Tidak ada data kamera", "Data Kosong", JOptionPane.WARNING_MESSAGE);
     }
+    public static void ImageBig(){
+        JOptionPane.showMessageDialog(null, "Ukuran gambar tidak sesuai dengan rekomendasi(450px*300px) dan dapat menyebabkan error pada tampilan katalog", "Image Size", JOptionPane.INFORMATION_MESSAGE);
+    }
 }

@@ -27,9 +27,9 @@ public class T_Keranjang extends AbstractTableModel{
             case 0:
                 return "MODEL";
             case 1:
-                return "MERK";
+                return "MEREK";
             case 2:
-                return "PRICE";
+                return "HARGA";
             case 3:
                 return "JUMLAH";
             case 4:
