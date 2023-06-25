@@ -65,6 +65,7 @@ public class C_History {
             }
         }
         DAOSewa.UpdateStatus(data_Riwayats.get(row).getId());
+        ui.getB_Mark().setEnabled(false);
         System.out.println(data_Riwayats.get(row).getId());
     }
 

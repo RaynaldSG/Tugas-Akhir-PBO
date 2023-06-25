@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 
 import controller.C_History;
+import javax.swing.JButton;
 
 /**
  *
@@ -25,6 +26,7 @@ public class UI_History extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         cHistory = new C_History(this);
         cHistory.show_Table();
+        b_Mark.setEnabled(false);
     }
 
     /**
@@ -246,6 +248,10 @@ public class UI_History extends javax.swing.JFrame {
 
     public JTable getT_Riwayat() {
         return t_Riwayat;
+    }
+
+    public JButton getB_Mark() {
+        return b_Mark;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
